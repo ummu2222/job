@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import React ,{useState , useEffect} from 'react';
 import './App.css';
+import Card from './components/Card';
+import data from './Dataa/data.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () =>{
+
+  const [jobs, setJob] = useState([]);
+
+  useEffect(()=>setJob(data),[]);
+
+  console.log(jobs);
+  return(
+    <>
+    <header className="bg-blue-700 mb-12" >
+      <img src='/images/bg-header-desktop.svg' alt="header" style={{width:'100%'}} />
+    </header>
+      {
+        jobs.map((job) =>(
+          <Card job={job} key={job.id} />
+        ))
+
+      }
+    </>
   );
 }
 
